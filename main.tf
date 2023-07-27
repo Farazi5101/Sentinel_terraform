@@ -19,9 +19,9 @@ resource "aws_lb" "test" {
 
   enable_deletion_protection = true
 
-  desync_mitigation_mode = "monitor"
-  drop_invalid_header_fields = false
-  enable_waf_fail_open = true
+  desync_mitigation_mode = "defensive"
+  drop_invalid_header_fields = true
+  enable_waf_fail_open = false
 
  
 
