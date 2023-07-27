@@ -11,16 +11,22 @@ provider "aws" {
   # Configuration options
 }
 
-resource "aws_db_instance" "default" {
-  allocated_storage    = 10
-  db_name              = "mydb"
-  engine               = "mysql"
-  engine_version       = "5.7"
-  instance_class       = "db.t3.micro"
-  username             = "foo"
-  password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
-  //copy_tags_to_snapshot = false
+resource "aws_lb" "test" {
+  name               = "test-lb-tf"
+  internal           = false
+  load_balancer_type = "application"
+  
 
+  enable_deletion_protection = true
 
+  desync_mitigation_mode = "monitor"
+  drop_invalid_header_fields = false
+  enable_waf_fail_open = true
+
+ 
+
+  tags = {
+    Environment = "production"
+  }
 }
+
